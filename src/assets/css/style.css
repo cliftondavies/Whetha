@@ -1,3 +1,11 @@
 *,
 *::before,
 *::after { box-sizing: border-box; }
+
+.menu-toggle {
+  position: absolute;
+}
+
+.menu-toggle-hide {
+  display: none;
+}
