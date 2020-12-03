@@ -145,6 +145,21 @@ const content = (() => {
     savedLocationsList.appendChild(london);
     savedLocationsList.appendChild(buenosAires);
     savedLocationsList.appendChild(lagos);
+
+    const menuBottom = htmlElement('div', 'menu-bottom');
+    menu.appendChild(menuBottom);
+
+    const celsius = htmlElement('span', 'celsius');
+    menuBottom.appendChild(celsius);
+
+    const temperatureToggleWrap = htmlElement('div', 'temperature-toggle-wrap');
+    menuBottom.appendChild(temperatureToggleWrap);
+
+    const temperatureToggle = htmlElement('button', 'temperatureToggle');
+    temperatureToggleWrap.appendChild(temperatureToggle);
+
+    const fahrenheit = htmlElement('span', 'fahrenheit');
+    menuBottom.appendChild(fahrenheit);
   };
 
   return { weatherPage };
