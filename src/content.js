@@ -48,28 +48,28 @@ const content = (() => {
 
   const weatherPage = () => {
     const menuToggle = htmlElement('button', 'menu-toggle');
-    menuToggle.setAttribute('data-toggle'); // check if necessary or implemented properly
+    menuToggle.setAttribute('data-toggle', ''); // check if necessary or implemented properly
     overallWrap.appendChild(menuToggle);
-    const toggleOpen = htmlElement('span', 'toggle-open', 'burger-entity-chracter'); // html entity
-    const toggleClose = htmlElement('span', 'toggle-Close', 'X');
+    const toggleOpen = htmlElement('span', 'toggle-show', 'burger-entity-chracter'); // html entity
+    const toggleClose = htmlElement('span', 'toggle-hide', 'X');
     menuToggle.appendChild(toggleOpen);
     menuToggle.appendChild(toggleClose);
 
     const currentWeather = htmlElement('section', 'current-weather');
     mainPage.appendChild(currentWeather);
 
-    const locationTime = htmlElement('div', 'location-Time');
+    const locationTime = htmlElement('div', 'location-time');
     const location = htmlElement('span', 'location', 'France');
     const date = htmlElement('span', 'date', '01 December 2020');
-    const time = htmlElement('span', 'time', '5 O\'clock');
+    const time = htmlElement('span', 'time', '5 O\'Clock');
     locationTime.appendChild(location);
     locationTime.appendChild(date);
     locationTime.appendChild(time);
 
     const temperature = htmlElement('section', 'temperature');
     const temp = htmlElement('span', 'current-weather-temp', '5* C');
-    temp.setAttribute('data-temparature'); // try here first before propagating
-    const feelsLike = htmlElement('span', 'feels-like', '2* C');
+    temp.setAttribute('data-temparature', ''); // try here first before propagating
+    const feelsLike = htmlElement('span', 'feels-like', 'Feels like, 2* C');
     const tempMin = htmlElement('span', 'temp-min', '1* C'); // merge as one span with tempMax?
     const tempMax = htmlElement('span', 'temp-max', '10* C');
     temperature.appendChild(temp);
@@ -86,7 +86,7 @@ const content = (() => {
     const measurementDetails = htmlElement('div', 'measurement-details');
     const pressure = measurementDetail('Pressure', '5 HPA');
     const humidity = measurementDetail('Humidity', '9%');
-    const wind = measurementDetail('Wind Speed', '20 M/S');
+    const wind = measurementDetail('Wind', '20 M/S');
     measurementDetails.appendChild(pressure);
     measurementDetails.appendChild(humidity);
     measurementDetails.appendChild(wind);
@@ -95,7 +95,7 @@ const content = (() => {
     details.appendChild(description);
     details.appendChild(measurementDetails);
 
-    currentWeather.appendChild(location);
+    currentWeather.appendChild(locationTime);
     currentWeather.appendChild(temperature);
     currentWeather.appendChild(details);
 
@@ -163,7 +163,7 @@ const content = (() => {
   };
 
   return { weatherPage };
-});
+})();
 
 export { content as default };
 
