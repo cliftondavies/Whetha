@@ -18,15 +18,23 @@
   border-radius: 10px;
   /* width: 55%; */
   /* box-shadow: -1px 1px 23px 5px #6595BB; */
-  box-shadow: 0px 0px 10px 2px rgba(101, 149, 187, 0.75);
+  /* box-shadow: 0px 0px 10px 2px rgba(101, 149, 187, 0.75); */
+  box-shadow: 7px 7px 15px 2px rgba(101,149,187,0.8);
   background: rosybrown;
   text-align: center;
 }
 
 .menu-toggle {
+  display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
+  border: none;
+  padding: 0 5px 0 0;
+  font-size: 30px;
+  line-height: 0.8;
+  background: none;
+  cursor: pointer;
 }
 
 .toggle-hide {
@@ -75,16 +83,108 @@
 
 .menu {
   position: absolute;
-  top: 20px;
+  top: 30px;
   right: 0;
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  justify-content: space-between;
   border: 1px solid #F4FCFC;
   border-top-left-radius: 10px;
+  padding-top: 5px;
   width: 20%;
-  height: calc(100% - 20px);
+  height: calc(100% - 30px);
   background: rgba(244, 252, 252, 0.1); /* hex:  #F4FCFC */
+}
+
+.search-actions {
+  margin-bottom: 15px;
+  /* width: 100%; */
+}
+
+.search-bar {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  /* outline: 0; */
 }
 
 .save-location,
 .current-location {
   display: block;
+  margin-bottom: 1px;
+  border: none;
+  padding: 5px;
+  width: 100%;
+  font-size: 14px;
+  text-align: left;
+  background: rgba(101,149,187,0.5);
+  cursor: pointer;
+}
+
+/* .saved-locations {
+  width: 100%;
+} */
+
+.saved-locations-heading {
+  margin-bottom: 5px;
+  padding-left: 5px;
+  /* width: 100%; */
+}
+
+/* .saved-locations-list {
+  width: 100%;
+} */
+
+.saved-list-item {
+  display: flex;
+  margin-bottom: 1px;
+  background: rgba(101,149,187,0.5);
+}
+
+.city-name {
+  flex: 1;
+  text-align: left;
+}
+
+.city-name,
+.delete-city {
+  border: none;
+  padding: 5px;
+  font-size: 14px;
+  background: none;
+  cursor: pointer;
+}
+
+.menu-bottom {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  /* align-self: flex-end; */
+  /* width: 100%; */
+}
+
+.temperature-toggle-wrap {
+  margin: 0 5px;
+  border: 2px solid rgba(101,149,187,0.8);
+  border-radius: 10px;
+  width: 35px;
+  line-height: 0;
+}
+
+.temperature-toggle {
+  border: 0;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background: #000;
+  cursor: pointer;
+}
+
+.temp-toggle-one {
+  background: #fff;
+}
+
+.temp-toggle-two {
+  background: rgba(101,149,187,1);
 }

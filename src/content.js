@@ -50,7 +50,8 @@ const content = (() => {
     const menuToggle = htmlElement('button', 'menu-toggle');
     menuToggle.setAttribute('data-toggle', ''); // check if necessary or implemented properly
     overallWrap.appendChild(menuToggle);
-    const toggleOpen = htmlElement('span', 'toggle-show', 'burger-entity-chracter'); // html entity
+    // const toggleOpen = htmlElement('span', 'toggle-show', 'burger-entity-chracter');
+    const toggleOpen = htmlElement('span', 'toggle-show', '\u2630'); // with html entity '\u2218'
     const toggleClose = htmlElement('span', 'toggle-hide', 'X');
     menuToggle.appendChild(toggleOpen);
     menuToggle.appendChild(toggleClose);
@@ -67,11 +68,11 @@ const content = (() => {
     locationTime.appendChild(time);
 
     const temperature = htmlElement('section', 'temperature');
-    const temp = htmlElement('span', 'current-weather-temp', '5* C');
+    const temp = htmlElement('span', 'current-weather-temp', '5\u26AC C');
     temp.setAttribute('data-temparature', ''); // try here first before propagating
-    const feelsLike = htmlElement('span', 'feels-like', 'Feels like, 2* C');
-    const tempMin = htmlElement('span', 'temp-min', '1* C'); // merge as one span with tempMax?
-    const tempMax = htmlElement('span', 'temp-max', '10* C');
+    const feelsLike = htmlElement('span', 'feels-like', 'Feels like, 2\u26AC C');
+    const tempMin = htmlElement('span', 'temp-min', '1\u26AC C'); // merge as one span with tempMax?
+    const tempMax = htmlElement('span', 'temp-max', '10\u26AC C');
     temperature.appendChild(temp);
     temperature.appendChild(feelsLike);
     temperature.appendChild(tempMin);
@@ -100,11 +101,11 @@ const content = (() => {
     currentWeather.appendChild(details);
 
     const forecast = htmlElement('section', 'forecast');
-    const forecastOne = forecastDetail('Monday', 'icon2', '3*/14*');
-    const forecastTwo = forecastDetail('Tuesday', 'icon3', '0*/17*');
-    const forecastThree = forecastDetail('Wednesday', 'icon4', '4*/18*');
-    const forecastFour = forecastDetail('Thursday', 'icon5', '8*/20*');
-    const forecastFive = forecastDetail('Friday', 'icon6', '10*/19*');
+    const forecastOne = forecastDetail('Monday', 'icon2', '3\u26AC/14\u26AC');
+    const forecastTwo = forecastDetail('Tuesday', 'icon3', '0\u26AC/17\u26AC');
+    const forecastThree = forecastDetail('Wednesday', 'icon4', '4\u26AC/18\u26AC');
+    const forecastFour = forecastDetail('Thursday', 'icon5', '8\u26AC/20\u26AC');
+    const forecastFive = forecastDetail('Friday', 'icon6', '10\u26AC/19\u26AC');
     forecast.appendChild(forecastOne);
     forecast.appendChild(forecastTwo);
     forecast.appendChild(forecastThree);
@@ -119,18 +120,21 @@ const content = (() => {
     const menuTop = htmlElement('div', 'menu-top');
     menu.appendChild(menuTop);
 
+    const searchActions = htmlElement('div', 'search-actions');
+    menuTop.appendChild(searchActions);
+
     const searchBar = htmlElement('input', 'search-bar');
     searchBar.setAttribute('placeholder', 'Enter a City');
     const saveLocation = htmlElement('button', 'save-location', 'Save this Location');
     saveLocation.setAttribute('type', 'button');
     const currentLocation = htmlElement('button', 'current-location', 'Go to Current Location');
     currentLocation.setAttribute('type', 'button');
-    menuTop.appendChild(searchBar);
-    menuTop.appendChild(saveLocation);
-    menuTop.appendChild(currentLocation);
+    searchActions.appendChild(searchBar);
+    searchActions.appendChild(saveLocation);
+    searchActions.appendChild(currentLocation);
 
     const savedLocations = htmlElement('section', 'saved-locations');
-    menu.appendChild(savedLocations);
+    menuTop.appendChild(savedLocations);
 
     const heading = htmlElement('h4', 'saved-locations-heading', 'Saved Locations');
     savedLocations.appendChild(heading);
@@ -149,16 +153,16 @@ const content = (() => {
     const menuBottom = htmlElement('div', 'menu-bottom');
     menu.appendChild(menuBottom);
 
-    const celsius = htmlElement('span', 'celsius');
+    const celsius = htmlElement('span', 'celsius', '\u26ACC');
     menuBottom.appendChild(celsius);
 
     const temperatureToggleWrap = htmlElement('div', 'temperature-toggle-wrap');
     menuBottom.appendChild(temperatureToggleWrap);
 
-    const temperatureToggle = htmlElement('button', 'temperatureToggle');
+    const temperatureToggle = htmlElement('button', 'temperature-toggle');
     temperatureToggleWrap.appendChild(temperatureToggle);
 
-    const fahrenheit = htmlElement('span', 'fahrenheit');
+    const fahrenheit = htmlElement('span', 'fahrenheit', '\u26ACF');
     menuBottom.appendChild(fahrenheit);
   };
 
@@ -192,7 +196,7 @@ export { content as default };
 // const iconTwo = htmlElement('canvas', 'icon2');
 // iconTwo.setAttribute('width', 128);
 // iconTwo.setAttribute('height', 128);
-// const tempOne = htmlElement('span', 'temp-one', '3*/14*');
+// const tempOne = htmlElement('span', 'temp-one', '3\u26AC/14\u26AC');
 // forecastOne.appendChild(dayOne);
 // forecastOne.appendChild(iconTwo);
 // forecastOne.appendChild(tempOne);
@@ -202,25 +206,25 @@ export { content as default };
 // const iconThree = htmlElement('canvas', 'icon3');
 // iconThree.setAttribute('width', 128);
 // iconThree.setAttribute('height', 128);
-// const tempTwo = htmlElement('span', 'temp-Two', '0*/17*');
+// const tempTwo = htmlElement('span', 'temp-Two', '0\u26AC/17\u26AC');
 
 // const forecastThree = htmlElement('div', 'forecast-three');
 // const dayThree = htmlElement('span', 'day-three', 'Wednesday');
 // const iconFour = htmlElement('canvas', 'icon4');
 // iconFour.setAttribute('width', 128);
 // iconFour.setAttribute('height', 128);
-// const tempThree = htmlElement('span', 'temp-three', '4*/18*');
+// const tempThree = htmlElement('span', 'temp-three', '4\u26AC/18\u26AC');
 
 // const forecastFour = htmlElement('div', 'forecast-four');
 // const dayFour = htmlElement('span', 'day-four', 'Thursday');
 // const iconFive = htmlElement('canvas', 'icon5');
 // iconFive.setAttribute('width', 128);
 // iconFive.setAttribute('height', 128);
-// const tempFour = htmlElement('span', 'temp-four', '8*/20*');
+// const tempFour = htmlElement('span', 'temp-four', '8\u26AC/20\u26AC');
 
 // const forecastFive = htmlElement('div', 'forecast-five');
 // const dayFive = htmlElement('span', 'day-five', 'Friday');
 // const iconSix = htmlElement('canvas', 'icon6');
 // iconSix.setAttribute('width', 128);
 // iconSix.setAttribute('height', 128);
-// const tempFive = htmlElement('span', 'temp-five', '10*/19*');
+// const tempFive = htmlElement('span', 'temp-five', '10\u26AC/19\u26AC');
