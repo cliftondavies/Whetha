@@ -46,6 +46,28 @@ const content = (() => {
     return savedListItem;
   };
 
+  const formatDate = (date, dateElement) => {
+    const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'];
+    const dateDigit = date.getDate();
+    const month = MONTHS[date.getMonth()];
+    const year = date.getFullYear();
+
+    dateElement.textContent = `${dateDigit} ${month} ${year}`;
+  };
+
+  const updateWeatherContent = (location, temp, feelsLike, minMax, pressure, humidity, windSpeed,
+    main, name, sys, weather, wind) => {
+    // update text content of all elements passed
+    location.textContent;
+    temp.textContent;
+    feelsLike.textContent;
+    minMax.textContent;
+    pressure.textContent;
+    humidity.textContent;
+    windSpeed.textContent
+  };
+
   const weatherPage = () => {
     const menuToggle = htmlElement('button', 'menu-toggle');
     menuToggle.setAttribute('data-toggle', ''); // check if necessary or implemented properly
@@ -60,29 +82,31 @@ const content = (() => {
     mainPage.appendChild(currentWeather);
 
     const locationTime = htmlElement('div', 'location-time');
-    const location = htmlElement('span', 'location', 'France');
-    const date = htmlElement('span', 'date', '01 December 2020');
+    const location = htmlElement('span', 'location', 'LONDON, GB'); // caps
+    const date = htmlElement('span', 'date', '6 December 2020');
     const time = htmlElement('span', 'time', '5 O\'Clock');
     locationTime.appendChild(location);
     locationTime.appendChild(date);
     locationTime.appendChild(time);
 
     const temperature = htmlElement('section', 'temperature');
-    const temp = htmlElement('span', 'current-weather-temp', '5\u26AC C');
+    const temp = htmlElement('span', 'current-weather-temp', '5\u00B0 C');
     temp.setAttribute('data-temparature', ''); // try here first before propagating
-    const feelsLike = htmlElement('span', 'feels-like', 'Feels like, 2\u26AC C');
-    const tempMin = htmlElement('span', 'temp-min', '1\u26AC C'); // merge as one span with tempMax?
-    const tempMax = htmlElement('span', 'temp-max', '10\u26AC C');
+    const feelsLike = htmlElement('span', 'feels-like', 'Feels like, 2\u00B0 C');
+    const minMax = htmlElement('span', 'min-max', '1\u00B0 C / 10\u00B0 C');
+    // const tempMin = htmlElement('span', 'temp-min', '1\u00B0 C'); // merge as one span with tempMax?
+    // const tempMax = htmlElement('span', 'temp-max', '10\u00B0 C');
     temperature.appendChild(temp);
     temperature.appendChild(feelsLike);
-    temperature.appendChild(tempMin);
-    temperature.appendChild(tempMax);
+    // temperature.appendChild(tempMin);
+    // temperature.appendChild(tempMax);
+    temperature.appendChild(minMax);
 
     const details = htmlElement('section', 'details');
     const icon = htmlElement('canvas', 'icon1'); // <canvas id="icon1" width="128" height="128"></canvas>
     icon.setAttribute('width', 128); // string or number value?
     icon.setAttribute('height', 128);
-    const description = htmlElement('span', 'description', 'Cloudy');
+    const description = htmlElement('span', 'description', 'CLOUDY'); // caps
 
     const measurementDetails = htmlElement('div', 'measurement-details');
     const pressure = measurementDetail('Pressure', '5 HPA');
@@ -101,18 +125,21 @@ const content = (() => {
     currentWeather.appendChild(details);
 
     const forecast = htmlElement('section', 'forecast');
-    const forecastOne = forecastDetail('Monday', 'icon2', '3\u26AC/14\u26AC');
-    const forecastTwo = forecastDetail('Tuesday', 'icon3', '0\u26AC/17\u26AC');
-    const forecastThree = forecastDetail('Wednesday', 'icon4', '4\u26AC/18\u26AC');
-    const forecastFour = forecastDetail('Thursday', 'icon5', '8\u26AC/20\u26AC');
-    const forecastFive = forecastDetail('Friday', 'icon6', '10\u26AC/19\u26AC');
+    mainPage.appendChild(forecast);
+    const forecastOne = forecastDetail('Monday', 'icon2', '3\u00B0/14\u00B0');
+    const forecastTwo = forecastDetail('Tuesday', 'icon3', '0\u00B0/17\u00B0');
+    const forecastThree = forecastDetail('Wednesday', 'icon4', '4\u00B0/18\u00B0');
+    const forecastFour = forecastDetail('Thursday', 'icon5', '8\u00B0/20\u00B0');
+    const forecastFive = forecastDetail('Friday', 'icon6', '10\u00B0/19\u00B0');
     forecast.appendChild(forecastOne);
     forecast.appendChild(forecastTwo);
     forecast.appendChild(forecastThree);
     forecast.appendChild(forecastFour);
     forecast.appendChild(forecastFive);
 
-    mainPage.appendChild(forecast);
+    const skycons = new Skycons({'color': 'white'});
+
+    skycons.add('icon1', Skycons.PARTLY_CLOUDY_DAY);
 
     const menu = htmlElement('section', 'menu');
     overallWrap.appendChild(menu);
@@ -124,7 +151,7 @@ const content = (() => {
     menuTop.appendChild(searchActions);
 
     const searchBar = htmlElement('input', 'search-bar');
-    searchBar.setAttribute('placeholder', 'Enter a City');
+    searchBar.setAttribute('placeholder', 'Enter a City...');
     const saveLocation = htmlElement('button', 'save-location', 'Save this Location');
     saveLocation.setAttribute('type', 'button');
     const currentLocation = htmlElement('button', 'current-location', 'Go to Current Location');
@@ -153,7 +180,7 @@ const content = (() => {
     const menuBottom = htmlElement('div', 'menu-bottom');
     menu.appendChild(menuBottom);
 
-    const celsius = htmlElement('span', 'celsius', '\u26ACC');
+    const celsius = htmlElement('span', 'celsius', '\u00B0C');
     menuBottom.appendChild(celsius);
 
     const temperatureToggleWrap = htmlElement('div', 'temperature-toggle-wrap');
@@ -162,11 +189,15 @@ const content = (() => {
     const temperatureToggle = htmlElement('button', 'temperature-toggle');
     temperatureToggleWrap.appendChild(temperatureToggle);
 
-    const fahrenheit = htmlElement('span', 'fahrenheit', '\u26ACF');
+    const fahrenheit = htmlElement('span', 'fahrenheit', '\u00B0F');
     menuBottom.appendChild(fahrenheit);
   };
 
-  return { weatherPage };
+  return {
+    weatherPage,
+    formatDate,
+    updateWeatherContent,
+  };
 })();
 
 export { content as default };
@@ -196,7 +227,7 @@ export { content as default };
 // const iconTwo = htmlElement('canvas', 'icon2');
 // iconTwo.setAttribute('width', 128);
 // iconTwo.setAttribute('height', 128);
-// const tempOne = htmlElement('span', 'temp-one', '3\u26AC/14\u26AC');
+// const tempOne = htmlElement('span', 'temp-one', '3\u00B0/14\u00B0');
 // forecastOne.appendChild(dayOne);
 // forecastOne.appendChild(iconTwo);
 // forecastOne.appendChild(tempOne);
@@ -206,25 +237,25 @@ export { content as default };
 // const iconThree = htmlElement('canvas', 'icon3');
 // iconThree.setAttribute('width', 128);
 // iconThree.setAttribute('height', 128);
-// const tempTwo = htmlElement('span', 'temp-Two', '0\u26AC/17\u26AC');
+// const tempTwo = htmlElement('span', 'temp-Two', '0\u00B0/17\u00B0');
 
 // const forecastThree = htmlElement('div', 'forecast-three');
 // const dayThree = htmlElement('span', 'day-three', 'Wednesday');
 // const iconFour = htmlElement('canvas', 'icon4');
 // iconFour.setAttribute('width', 128);
 // iconFour.setAttribute('height', 128);
-// const tempThree = htmlElement('span', 'temp-three', '4\u26AC/18\u26AC');
+// const tempThree = htmlElement('span', 'temp-three', '4\u00B0/18\u00B0');
 
 // const forecastFour = htmlElement('div', 'forecast-four');
 // const dayFour = htmlElement('span', 'day-four', 'Thursday');
 // const iconFive = htmlElement('canvas', 'icon5');
 // iconFive.setAttribute('width', 128);
 // iconFive.setAttribute('height', 128);
-// const tempFour = htmlElement('span', 'temp-four', '8\u26AC/20\u26AC');
+// const tempFour = htmlElement('span', 'temp-four', '8\u00B0/20\u00B0');
 
 // const forecastFive = htmlElement('div', 'forecast-five');
 // const dayFive = htmlElement('span', 'day-five', 'Friday');
 // const iconSix = htmlElement('canvas', 'icon6');
 // iconSix.setAttribute('width', 128);
 // iconSix.setAttribute('height', 128);
-// const tempFive = htmlElement('span', 'temp-five', '10\u26AC/19\u26AC');
+// const tempFive = htmlElement('span', 'temp-five', '10\u00B0/19\u00B0');
