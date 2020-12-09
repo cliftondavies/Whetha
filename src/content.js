@@ -1,3 +1,5 @@
+const { Skycons } = window;
+
 const content = (() => {
   const htmlElement = (tag, klass, textContent = '', id = '') => {
     const element = document.createElement(tag);
@@ -22,12 +24,12 @@ const content = (() => {
     return detail;
   };
 
-  const forecastDetail = (dayText, iconClass, tempText) => {
+  const forecastDetail = (dayText, iconClass, iconID, tempText) => {
     const forecast = htmlElement('div', 'forecast-card');
     const day = htmlElement('span', 'day', dayText);
-    const icon = htmlElement('canvas', iconClass);
-    icon.setAttribute('width', 128);
-    icon.setAttribute('height', 128);
+    const icon = htmlElement('canvas', iconClass, '', iconID);
+    icon.setAttribute('width', '128');
+    icon.setAttribute('height', '128');
     const temp = htmlElement('span', 'forecast-temp', tempText);
     forecast.appendChild(day);
     forecast.appendChild(icon);
@@ -44,6 +46,12 @@ const content = (() => {
     deleteCity.setAttribute('type', 'button');
     savedListItem.appendChild(deleteCity);
     return savedListItem;
+  };
+
+  const skycon = (iconID, description) => {
+    const skycon = new Skycons({ monochrome: false });
+    skycon.add(iconID, Skycons[description]);
+    skycon.play();
   };
 
   const formatDate = (date, dateElement) => {
@@ -103,9 +111,9 @@ const content = (() => {
     temperature.appendChild(minMax);
 
     const details = htmlElement('section', 'details');
-    const icon = htmlElement('canvas', 'icon1'); // <canvas id="icon1" width="128" height="128"></canvas>
-    icon.setAttribute('width', 128); // string or number value?
-    icon.setAttribute('height', 128);
+    const icon = htmlElement('canvas', 'icon-one', '', 'icon1');
+    icon.setAttribute('width', '128');
+    icon.setAttribute('height', '128');
     const description = htmlElement('span', 'description', 'CLOUDY'); // caps
 
     const measurementDetails = htmlElement('div', 'measurement-details');
@@ -124,22 +132,26 @@ const content = (() => {
     currentWeather.appendChild(temperature);
     currentWeather.appendChild(details);
 
+    skycon('icon1', 'PARTLY_CLOUDY_DAY');
+
     const forecast = htmlElement('section', 'forecast');
     mainPage.appendChild(forecast);
-    const forecastOne = forecastDetail('Monday', 'icon2', '3\u00B0/14\u00B0');
-    const forecastTwo = forecastDetail('Tuesday', 'icon3', '0\u00B0/17\u00B0');
-    const forecastThree = forecastDetail('Wednesday', 'icon4', '4\u00B0/18\u00B0');
-    const forecastFour = forecastDetail('Thursday', 'icon5', '8\u00B0/20\u00B0');
-    const forecastFive = forecastDetail('Friday', 'icon6', '10\u00B0/19\u00B0');
+    const forecastOne = forecastDetail('Monday', 'icon2', 'icon2', '3\u00B0/14\u00B0');
+    const forecastTwo = forecastDetail('Tuesday', 'icon3', 'icon3', '0\u00B0/17\u00B0');
+    const forecastThree = forecastDetail('Wednesday', 'icon4', 'icon4', '4\u00B0/18\u00B0');
+    const forecastFour = forecastDetail('Thursday', 'icon5', 'icon5', '8\u00B0/20\u00B0');
+    const forecastFive = forecastDetail('Friday', 'icon6', 'icon6', '10\u00B0/19\u00B0');
     forecast.appendChild(forecastOne);
     forecast.appendChild(forecastTwo);
     forecast.appendChild(forecastThree);
     forecast.appendChild(forecastFour);
     forecast.appendChild(forecastFive);
 
-    const skycons = new Skycons({'color': 'white'});
-
-    skycons.add('icon1', Skycons.PARTLY_CLOUDY_DAY);
+    skycon('icon2', 'RAIN_SNOW_SHOWERS_DAY');
+    skycon('icon3', 'FOG');
+    skycon('icon4', 'RAIN_SNOW_SHOWERS_NIGHT');
+    skycon('icon5', 'WIND');
+    skycon('icon6', 'HAIL');
 
     const menu = htmlElement('section', 'menu');
     overallWrap.appendChild(menu);

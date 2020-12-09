@@ -1,4 +1,4 @@
-// enable user to select current location
+// set current location
 // const userWeather = () => {
 //   if ('geolocation' in navigator) {
 //     navigator.geolocation.getCurrentPosition(userLocation, error); // (setPosition, error) originally
@@ -30,11 +30,30 @@
 const celsiusToFahrenheit = (temperature) => (temperature * (9 / 5)) + 32;
 
 
+
+// toggle temperature unit
+// const temperatureUnit = (currentTempUnit) => {
+//   get all elements with class temperature
+//   if currentTempUnit is c
+//     iterate through elements
+//     get element temperature string as digit
+//     convert element temp to fahrenheit
+//     update content of element
+//   else
+//     iterate through elements
+//     get element temperature string as digit
+//     set element back to temp value retrieve from api
+//     update content of element
+//   end
+// };
+
+
 // geolocation.js ?
-// const userLocation = (position) => {
+// const userLocation = async (position) => {
 //   const latitude = position.coords.latitude;
 //   const longitude = position.coords.longitude;
-//   getWeather(latitude, longitude)
+//   const weatherObj = await getWeather(latitude, longitude);
+//   displayWeather(weatherObj);
 // };
 
 // const userLocationError = (error) => {
@@ -58,3 +77,9 @@ const celsiusToFahrenheit = (temperature) => (temperature * (9 / 5)) + 32;
 //   const { main, sys, weather } = await getWeather(latVal, longVal);
 //   return { main, sys, weather };
 // }; // try/catch or catch
+
+
+// set icon method - hereor in coontent is the method necessary?
+
+
+// search weather for a specific location

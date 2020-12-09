@@ -1,6 +1,6 @@
 // require('dotenv').config()
 // process.env.API_KEY
-
+// const { google } = window;
 import './assets/css/reset.css';
 import './assets/css/style.css';
 import content from './content';
@@ -11,6 +11,8 @@ content.weatherPage();
 // const temperature = { unit: 'celsius' }; // here or elsewhere?
 // const temperatureToggle = document.querySelector('.temperature-toggle-wrap');
 // const searchBar = document.querySelector('.search-bar');
+
+// window.addEventListener('load', ui.userWeather);
 
 // temperatureToggle.addEventListener('click', e => {
 //   if (temperature unit is equal to celsius) {
@@ -27,4 +29,17 @@ content.weatherPage();
 //     const weatherObj = await getWeather(searchBar.value);
 //     displayWeather(weatherObj);
 //   }
+// });
+
+// const skycons = new Skycons({"color": "white"});
+// skycons.add(document.querySelector('.icon1'), Skycons.PARTLY_CLOUDY_DAY);
+// skycons.play();
+// const searchBar = document.querySelector('.search-bar');
+// const search = new google.maps.places.SearchBox(searchBar);
+// search.addListener('places_changed', () => {
+//   const place = search.getPlaces()[0];
+//   if (place == null) return;
+//   const latitude = place.geometry.location.lat();
+//   const longitude = place.geometry.location.lng();
+//   //getWeather(latitude, longitude);
 // });
