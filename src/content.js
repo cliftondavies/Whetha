@@ -54,14 +54,16 @@ const content = (() => {
     skycon.play();
   };
 
-  const formatDate = (date, dateElement) => {
+  const formattedDate = () => {
+    const date = new Date();
     const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
       'September', 'October', 'November', 'December'];
     const dateDigit = date.getDate();
     const month = MONTHS[date.getMonth()];
     const year = date.getFullYear();
 
-    dateElement.textContent = `${dateDigit} ${month} ${year}`;
+    // dateElement.textContent = `${dateDigit} ${month} ${year}`;
+    return `${dateDigit} ${month} ${year}`;
   };
 
   const updateWeatherContent = (location, temp, feelsLike, minMax, pressure, humidity, windSpeed,
@@ -80,8 +82,7 @@ const content = (() => {
     const menuToggle = htmlElement('button', 'menu-toggle');
     menuToggle.setAttribute('data-toggle', ''); // check if necessary or implemented properly
     overallWrap.appendChild(menuToggle);
-    // const toggleOpen = htmlElement('span', 'toggle-show', 'burger-entity-chracter');
-    const toggleOpen = htmlElement('span', 'toggle-show', '\u2630'); // with html entity '\u2218'
+    const toggleOpen = htmlElement('span', 'toggle-show', '\u2630');
     const toggleClose = htmlElement('span', 'toggle-hide', 'X');
     menuToggle.appendChild(toggleOpen);
     menuToggle.appendChild(toggleClose);
@@ -91,7 +92,8 @@ const content = (() => {
 
     const locationTime = htmlElement('div', 'location-time');
     const location = htmlElement('span', 'location', 'LONDON, GB'); // caps
-    const date = htmlElement('span', 'date', '6 December 2020');
+    const date = htmlElement('span', 'date');
+    date.textContent = formattedDate();
     const time = htmlElement('span', 'time', '5 O\'Clock');
     locationTime.appendChild(location);
     locationTime.appendChild(date);
@@ -207,7 +209,6 @@ const content = (() => {
 
   return {
     weatherPage,
-    formatDate,
     updateWeatherContent,
   };
 })();

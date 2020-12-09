@@ -30,16 +30,3 @@ content.weatherPage();
 //     displayWeather(weatherObj);
 //   }
 // });
-
-// const skycons = new Skycons({"color": "white"});
-// skycons.add(document.querySelector('.icon1'), Skycons.PARTLY_CLOUDY_DAY);
-// skycons.play();
-// const searchBar = document.querySelector('.search-bar');
-// const search = new google.maps.places.SearchBox(searchBar);
-// search.addListener('places_changed', () => {
-//   const place = search.getPlaces()[0];
-//   if (place == null) return;
-//   const latitude = place.geometry.location.lat();
-//   const longitude = place.geometry.location.lng();
-//   //getWeather(latitude, longitude);
-// });
