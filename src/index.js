@@ -8,7 +8,7 @@ content.weatherPage();
 
 // const temperature = { unit: 'celsius' }; // here or elsewhere?
 // const temperatureToggle = document.querySelector('.temperature-toggle-wrap');
-// const searchBar = document.querySelector('.search-bar');
+const searchBar = document.querySelector('.search-bar');
 
 window.addEventListener('load', ui.userLocation);
 
@@ -22,9 +22,11 @@ window.addEventListener('load', ui.userLocation);
 //   }
 // });
 
-// searchBar.addEventListener('keypress', async e => {
-//   if (e.keyCode == 13) {
-//     const weatherObj = await getWeather(searchBar.value);
-//     displayWeather(weatherObj);
-//   }
-// });
+searchBar.addEventListener('keypress', async (e) => {
+  if (e.keyCode === 13) {
+    const weatherObj = await ui.searchWeather(searchBar.value);
+    ui.displayWeather(weatherObj);
+    searchBar.value = '';
+    searchBar.blur();
+  }
+});

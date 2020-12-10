@@ -12,6 +12,13 @@ const ui = (() => {
   };
 
   // search weather for a location by city
+  const searchWeather = async (city) => {
+    const apiKey = process.env.API_KEY; // 'fba0df8efddb9062b4252bb8fd70457c';
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const weatherJson = await fetch(apiUrl);
+    const weatherData = await weatherJson.json();
+    return weatherData;
+  };
 
   // show default location - location
 
@@ -41,7 +48,7 @@ const ui = (() => {
   };
 
   const geolocationError = (error) => {
-    alert(error.message);
+    //alert(error.message);
   };
 
   // allow geolocation
@@ -49,7 +56,7 @@ const ui = (() => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(userWeather, geolocationError);
     } else {
-      alert('Geolocation not supported');
+      //alert('Geolocation not supported');
     }
   };
 
@@ -81,6 +88,8 @@ const ui = (() => {
   // clear input
   return {
     userLocation,
+    searchWeather,
+    displayWeather,
   };
 })();
 
