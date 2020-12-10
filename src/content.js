@@ -15,6 +15,16 @@ const content = (() => {
   document.body.appendChild(overallWrap);
   overallWrap.appendChild(mainPage);
 
+  const conditions = {
+    Clear: 'CLEAR_DAY',
+    Clouds: 'CLOUDY',
+    '50d': 'FOG',
+    Snow: 'SNOW',
+    Rain: 'RAIN',
+    Drizzle: 'RAIN',
+    Thunderstorm: 'THUNDER_RAIN',
+  };
+
   const measurementDetail = (heading, measure, measureClass) => {
     const detail = htmlElement('div', 'measurement-detail');
     const detailHeading = htmlElement('span', 'detail-heading', heading);
@@ -61,8 +71,6 @@ const content = (() => {
     const dateDigit = date.getDate();
     const month = MONTHS[date.getMonth()];
     const year = date.getFullYear();
-
-    // dateElement.textContent = `${dateDigit} ${month} ${year}`;
     return `${dateDigit} ${month} ${year}`;
   };
 
@@ -77,7 +85,8 @@ const content = (() => {
     pressure.textContent = `${main.pressure} HPA`;
     humidity.textContent = `${main.humidity}%`;
     windSpeed.textContent = `${Math.round(wind.speed)} M/S`;
-    time.textContent = `UTC ${timezone}`;
+    time.textContent = `UTC ${Math.round(timezone / 3600)}`;
+    skycon('icon1', conditions[weather[0].main || weather[0].icon]);
   };
 
   const weatherPage = () => {
