@@ -1,42 +1,47 @@
-const ui = () => {
+import content from './content';
+
+const ui = (() => {
   // api.js ?
-  // require('dotenv').config()
-  // const apiKey = process.env.API_KEY;
+  // search weather for a location by longitude and latitude
+  const getWeather = async (latitude, longitude) => {
+    const apiKey = process.env.API_KEY; // 'fba0df8efddb9062b4252bb8fd70457c';
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    const weatherJson = await fetch(apiUrl);
+    const weatherData = await weatherJson.json();
+    return weatherData;
+  };
 
-  // search weather for a specific location
-  // const getWeather = async (latitude, longitude) => {
-  //   const apiUrl = see most up to date url from openweather
-  //   const weatherJson = await fetch(apiUrl);
-  //   const weatherObj = await weatherJson.json();
-  //   return weatherObj;
-  // };// try/catch or catch
+  // search weather for a location by city
 
-  // const weatherData = ({ main, name, sys, weather, wind }) => ({ main, sys, weather });
-  // const weatherData = async () => { // pass lat and long vals as params?
-  //   const { main, sys, weather } = await getWeather(latVal, longVal);
-  //   return { main, sys, weather };
-  // }; // try/catch or catch
+  // show default location - location
 
-  // display/render weather info related to a specific search
-  // const displayWeather = async () => { // pass lat and long vals as params?
-  //   const { main, sys, weather } = await getWeather(latVal, longVal);
-  //   select all elements to update
-  //   updates content on the page with info
-  // }; // try/catch
-  // const displayWeather = ({ main, name, sys, weather, wind }) => {
-  //   select all elements to update
-  //   updates content on the page with info
-  // }; // try/catch or catch
+  const displayWeather = ({
+    main, name, timezone, sys, weather, wind,
+  }) => {
+    const location = document.querySelector('.location');
+    const time = document.querySelector('.time');
+    const temp = document.querySelector('.current-weather-temp');
+    const feel = document.querySelector('.feels-like');
+    const min = document.querySelector('.temp-min');
+    const max = document.querySelector('.temp-max');
+    const description = document.querySelector('.description');
+    const pressure = document.querySelector('.pressure');
+    const humidity = document.querySelector('.humidity');
+    const windSpeed = document.querySelector('.wind');
+    content.weatherContent(location, time, temp, feel, min, max, description, pressure, humidity, windSpeed,
+      main, name, timezone, sys, weather, wind);
+  };
 
   // geolocation.js ?
   const userWeather = async (position) => {
     const { latitude, longitude } = position.coords;
     const weatherObj = await getWeather(latitude, longitude);
+    console.log(weatherObj);
     displayWeather(weatherObj);
   };
 
   const geolocationError = (error) => {
-    // reveal notification element at top with #{error.message} property - Geolocation not supported
+    alert(error.message);
   };
 
   // allow geolocation
@@ -44,7 +49,7 @@ const ui = () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(userWeather, geolocationError);
     } else {
-      // reveal notification element at top with error message - Geolocation not supported
+      alert('Geolocation not supported');
     }
   };
 
@@ -72,4 +77,11 @@ const ui = () => {
   // toggle menu
 
   // set icon method - hereor in coontent is the method necessary?
-};
+
+  // clear input
+  return {
+    userLocation,
+  };
+})();
+
+export { ui as default };

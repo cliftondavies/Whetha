@@ -1,6 +1,4 @@
-// require('dotenv').config()
-// process.env.API_KEY
-// const { google } = window;
+import 'regenerator-runtime/runtime';
 import './assets/css/reset.css';
 import './assets/css/style.css';
 import content from './content';
@@ -12,7 +10,7 @@ content.weatherPage();
 // const temperatureToggle = document.querySelector('.temperature-toggle-wrap');
 // const searchBar = document.querySelector('.search-bar');
 
-// window.addEventListener('load', ui.userWeather);
+window.addEventListener('load', ui.userLocation);
 
 // temperatureToggle.addEventListener('click', e => {
 //   if (temperature unit is equal to celsius) {

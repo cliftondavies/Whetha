@@ -15,10 +15,10 @@ const content = (() => {
   document.body.appendChild(overallWrap);
   overallWrap.appendChild(mainPage);
 
-  const measurementDetail = (heading, measure) => {
+  const measurementDetail = (heading, measure, measureClass) => {
     const detail = htmlElement('div', 'measurement-detail');
     const detailHeading = htmlElement('span', 'detail-heading', heading);
-    const detailMeasure = htmlElement('span', 'detail-measure', measure);
+    const detailMeasure = htmlElement('span', measureClass, measure);
     detail.appendChild(detailHeading);
     detail.appendChild(detailMeasure);
     return detail;
@@ -66,16 +66,18 @@ const content = (() => {
     return `${dateDigit} ${month} ${year}`;
   };
 
-  const updateWeatherContent = (location, temp, feelsLike, minMax, pressure, humidity, windSpeed,
-    main, name, sys, weather, wind) => {
-    // update text content of all elements passed
-    location.textContent;
-    temp.textContent;
-    feelsLike.textContent;
-    minMax.textContent;
-    pressure.textContent;
-    humidity.textContent;
-    windSpeed.textContent
+  const weatherContent = (location, time, temp, feel, min, max, description, pressure, humidity, windSpeed,
+    main, name, timezone, sys, weather, wind) => {
+    location.textContent = `${name}, ${sys.country}`;
+    temp.textContent = `${Math.round(main.temp)}\u00B0 C`;
+    feel.textContent = `Feels like ${Math.round(main.feels_like)}\u00B0 C`;
+    min.textContent = `${Math.round(main.temp_min)}\u00B0 C / `;
+    max.textContent = `${Math.round(main.temp_max)}\u00B0 C`;
+    description.textContent = `${weather[0].description}`;
+    pressure.textContent = `${main.pressure} HPA`;
+    humidity.textContent = `${main.humidity}%`;
+    windSpeed.textContent = `${Math.round(wind.speed)} M/S`;
+    time.textContent = `UTC ${timezone}`;
   };
 
   const weatherPage = () => {
@@ -103,9 +105,12 @@ const content = (() => {
     const temp = htmlElement('span', 'current-weather-temp', '5\u00B0 C');
     temp.setAttribute('data-temparature', ''); // try here first before propagating
     const feelsLike = htmlElement('span', 'feels-like', 'Feels like, 2\u00B0 C');
-    const minMax = htmlElement('span', 'min-max', '1\u00B0 C / 10\u00B0 C');
-    // const tempMin = htmlElement('span', 'temp-min', '1\u00B0 C'); // merge as one span with tempMax?
-    // const tempMax = htmlElement('span', 'temp-max', '10\u00B0 C');
+    // const minMax = htmlElement('span', 'min-max', '1\u00B0 C / 10\u00B0 C');
+    const minMax = htmlElement('div', 'min-max');
+    const tempMin = htmlElement('span', 'temp-min', '1\u00B0 C');
+    const tempMax = htmlElement('span', 'temp-max', '10\u00B0 C');
+    minMax.appendChild(tempMin);
+    minMax.appendChild(tempMax);
     temperature.appendChild(temp);
     temperature.appendChild(feelsLike);
     // temperature.appendChild(tempMin);
@@ -119,9 +124,9 @@ const content = (() => {
     const description = htmlElement('span', 'description', 'CLOUDY'); // caps
 
     const measurementDetails = htmlElement('div', 'measurement-details');
-    const pressure = measurementDetail('Pressure', '5 HPA');
-    const humidity = measurementDetail('Humidity', '9%');
-    const wind = measurementDetail('Wind', '20 M/S');
+    const pressure = measurementDetail('Pressure', '5 HPA', 'pressure');
+    const humidity = measurementDetail('Humidity', '9%', 'humidity');
+    const wind = measurementDetail('Wind', '20 M/S', 'wind');
     measurementDetails.appendChild(pressure);
     measurementDetails.appendChild(humidity);
     measurementDetails.appendChild(wind);
@@ -209,7 +214,7 @@ const content = (() => {
 
   return {
     weatherPage,
-    updateWeatherContent,
+    weatherContent,
   };
 })();
 

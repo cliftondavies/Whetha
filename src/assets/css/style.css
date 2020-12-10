@@ -55,7 +55,7 @@ body {
   /* border: 1px solid green; */
   margin-bottom: 10px;
   border-radius: 10px 10px 0 0;
-  padding: 30px 0 15px 0;
+  padding: 30px 10px 15px 10px;
   background: rgba(255, 255, 255, 0.5); /* rgba(244, 252, 252, 0.5); */
   color: #fff; /* #E1F2FE; /* or white */
 }
@@ -69,7 +69,7 @@ body {
 }
 
 .temperature {
-  margin: 0 20px;
+  margin: 0 30px;
   justify-content: center;
 }
 
@@ -91,7 +91,7 @@ body {
 .time,
 .feels-like,
 .detail-heading {
-  margin-bottom: 5px;
+  margin-bottom: 7px;
   /* font-size: 18px; */
 }
 
@@ -100,6 +100,7 @@ body {
   font-size: 20px;
   font-weight: 600;
   font-style: italic;
+  text-transform: uppercase;
   text-shadow: 0 2px rgba(73, 57, 44, 0.2);
 }
 
