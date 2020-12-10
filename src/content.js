@@ -74,8 +74,8 @@ const content = (() => {
     return `${dateDigit} ${month} ${year}`;
   };
 
-  const weatherContent = (location, time, temp, feel, min, max, description, pressure, humidity, windSpeed,
-    main, name, timezone, sys, weather, wind) => {
+  const weatherContent = (location, time, temp, feel, min, max, description, pressure, humidity,
+    windSpeed, main, name, timezone, sys, weather, wind) => {
     location.textContent = `${name}, ${sys.country}`;
     temp.textContent = `${Math.round(main.temp)}\u00B0 C`;
     feel.textContent = `Feels like ${Math.round(main.feels_like)}\u00B0 C`;
@@ -102,22 +102,22 @@ const content = (() => {
     mainPage.appendChild(currentWeather);
 
     const locationTime = htmlElement('div', 'location-time');
-    const location = htmlElement('span', 'location', 'LONDON, GB'); // caps
+    const location = htmlElement('span', 'location');
     const date = htmlElement('span', 'date');
     date.textContent = formattedDate();
-    const time = htmlElement('span', 'time', '5 O\'Clock');
+    const time = htmlElement('span', 'time');
     locationTime.appendChild(location);
     locationTime.appendChild(date);
     locationTime.appendChild(time);
 
     const temperature = htmlElement('section', 'temperature');
-    const temp = htmlElement('span', 'current-weather-temp', '5\u00B0 C');
+    const temp = htmlElement('span', 'current-weather-temp');
     temp.setAttribute('data-temparature', ''); // try here first before propagating
-    const feelsLike = htmlElement('span', 'feels-like', 'Feels like, 2\u00B0 C');
+    const feelsLike = htmlElement('span', 'feels-like');
     // const minMax = htmlElement('span', 'min-max', '1\u00B0 C / 10\u00B0 C');
     const minMax = htmlElement('div', 'min-max');
-    const tempMin = htmlElement('span', 'temp-min', '1\u00B0 C');
-    const tempMax = htmlElement('span', 'temp-max', '10\u00B0 C');
+    const tempMin = htmlElement('span', 'temp-min');
+    const tempMax = htmlElement('span', 'temp-max');
     minMax.appendChild(tempMin);
     minMax.appendChild(tempMax);
     temperature.appendChild(temp);
@@ -130,12 +130,12 @@ const content = (() => {
     const icon = htmlElement('canvas', 'icon-one', '', 'icon1');
     icon.setAttribute('width', '128');
     icon.setAttribute('height', '128');
-    const description = htmlElement('span', 'description', 'CLOUDY'); // caps
+    const description = htmlElement('span', 'description');
 
     const measurementDetails = htmlElement('div', 'measurement-details');
-    const pressure = measurementDetail('Pressure', '5 HPA', 'pressure');
-    const humidity = measurementDetail('Humidity', '9%', 'humidity');
-    const wind = measurementDetail('Wind', '20 M/S', 'wind');
+    const pressure = measurementDetail('Pressure', '', 'pressure');
+    const humidity = measurementDetail('Humidity', '', 'humidity');
+    const wind = measurementDetail('Wind', '', 'wind');
     measurementDetails.appendChild(pressure);
     measurementDetails.appendChild(humidity);
     measurementDetails.appendChild(wind);
@@ -228,61 +228,3 @@ const content = (() => {
 })();
 
 export { content as default };
-
-// 1. Refactor: write function for creating a measurement-detail card
-// const pressure = htmlElement('div', 'pressure');
-// const pressureHeading = htmlElement('span', 'pressure-heading', 'Pressure');
-// const pressureMeasure = htmlElement('span', 'pressure-measure', '5 HPA');
-// pressure.appendChild(pressureHeading);
-// pressure.appendChild(pressureMeasure);
-
-// const humidity = htmlElement('div', 'humidity');
-// const humidityHeading = htmlElement('span', 'humidity-heading', 'Humidity');
-// const humidityMeasure = htmlElement('span', 'humidity-measure', '9%');
-// humidity.appendChild(humidityHeading);
-// humidity.appendChild(humidityMeasure);
-
-// const wind = htmlElement('div', 'wind');
-// const windHeading = htmlElement('span', 'wind-heading', 'Wind Speed');
-// const windMeasure = htmlElement('span', 'wind-measure', '20 M/S');
-// wind.appendChild(windHeading);
-// wind.appendChild(windMeasure);
-
-// 2. Refactor: write function for creating a forecast card
-// const forecastOne = htmlElement('div', 'forecast-one');
-// const dayOne = htmlElement('span', 'day-one', 'Monday');
-// const iconTwo = htmlElement('canvas', 'icon2');
-// iconTwo.setAttribute('width', 128);
-// iconTwo.setAttribute('height', 128);
-// const tempOne = htmlElement('span', 'temp-one', '3\u00B0/14\u00B0');
-// forecastOne.appendChild(dayOne);
-// forecastOne.appendChild(iconTwo);
-// forecastOne.appendChild(tempOne);
-
-// const forecastTwo = htmlElement('div', 'forecast-two');
-// const dayTwo = htmlElement('span', 'day-two', 'Tuesday');
-// const iconThree = htmlElement('canvas', 'icon3');
-// iconThree.setAttribute('width', 128);
-// iconThree.setAttribute('height', 128);
-// const tempTwo = htmlElement('span', 'temp-Two', '0\u00B0/17\u00B0');
-
-// const forecastThree = htmlElement('div', 'forecast-three');
-// const dayThree = htmlElement('span', 'day-three', 'Wednesday');
-// const iconFour = htmlElement('canvas', 'icon4');
-// iconFour.setAttribute('width', 128);
-// iconFour.setAttribute('height', 128);
-// const tempThree = htmlElement('span', 'temp-three', '4\u00B0/18\u00B0');
-
-// const forecastFour = htmlElement('div', 'forecast-four');
-// const dayFour = htmlElement('span', 'day-four', 'Thursday');
-// const iconFive = htmlElement('canvas', 'icon5');
-// iconFive.setAttribute('width', 128);
-// iconFive.setAttribute('height', 128);
-// const tempFour = htmlElement('span', 'temp-four', '8\u00B0/20\u00B0');
-
-// const forecastFive = htmlElement('div', 'forecast-five');
-// const dayFive = htmlElement('span', 'day-five', 'Friday');
-// const iconSix = htmlElement('canvas', 'icon6');
-// iconSix.setAttribute('width', 128);
-// iconSix.setAttribute('height', 128);
-// const tempFive = htmlElement('span', 'temp-five', '10\u00B0/19\u00B0');

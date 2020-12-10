@@ -10,7 +10,10 @@ content.weatherPage();
 // const temperatureToggle = document.querySelector('.temperature-toggle-wrap');
 const searchBar = document.querySelector('.search-bar');
 
-window.addEventListener('load', ui.userLocation);
+window.addEventListener('load', () => {
+  ui.defaultLocation();
+  ui.userLocation();
+});
 
 // temperatureToggle.addEventListener('click', e => {
 //   if (temperature unit is equal to celsius) {

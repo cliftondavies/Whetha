@@ -39,6 +39,11 @@ const ui = (() => {
       main, name, timezone, sys, weather, wind);
   };
 
+  const defaultLocation = async () => {
+    const londonWeather = await searchWeather('London');
+    displayWeather(londonWeather);
+  };
+
   // geolocation.js ?
   const userWeather = async (position) => {
     const { latitude, longitude } = position.coords;
@@ -90,6 +95,7 @@ const ui = (() => {
     userLocation,
     searchWeather,
     displayWeather,
+    defaultLocation,
   };
 })();
 
