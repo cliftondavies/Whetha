@@ -74,8 +74,6 @@ const ui = (() => {
     content.toggleClass(temperatureToggle, 'temp-toggle-two');
   };
 
-  // change background image of current weather section based on weather type
-
   const toggleMenu = () => {
     const toggleOpen = document.querySelector('.toggle-open');
     const toggleClose = document.querySelector('.toggle-close');

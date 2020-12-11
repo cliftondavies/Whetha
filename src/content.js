@@ -76,17 +76,19 @@ const content = (() => {
 
   const changeImage = (weatherType) => {
     const currentWeather = document.querySelector('.current-weather');
+    const list = currentWeather.classList;
+    if (list.length > 1) { list.remove(list.item(1)); }
 
     if (weatherType === 'Rain' || weatherType === 'Drizzle' || weatherType === 'Thunderstorm') {
-      currentWeather.classList.toggle('rainy');
+      list.add('rainy');
     } else if (weatherType === 'Snow') {
-      currentWeather.classList.toggle('snowy');
+      list.add('snowy');
     } else if (weatherType === 'Clouds') {
-      currentWeather.classList.toggle('cloudy');
+      list.add('cloudy');
     } else if (weatherType === 'Clear') {
-      currentWeather.classList.toggle('clear');
+      list.add('clear');
     } else {
-      currentWeather.classList.toggle('foggy');
+      list.add('foggy');
     }
   };
 
