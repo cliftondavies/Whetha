@@ -4,7 +4,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  color: #49392C;
+  color: #49392c;
   overflow-x: hidden;
 }
 
@@ -13,15 +13,15 @@ body {
   align-items: center;
   padding-left: 225px;
   height: 100vh;
-  background: radial-gradient(circle, rgba(156,204,236,1) 0%, rgba(234,244,251,1) 100%);
+  background: radial-gradient(circle, rgba(156, 204, 236, 1) 0%, rgba(234, 244, 251, 1) 100%);
 }
 
 .main-wrap {
-  border: 0.1px solid #6595BB;
+  border: 0.1px solid #6595bb;
   border-radius: 10px;
-  box-shadow: 7px 7px 15px 2px rgba(101,149,187,0.8);
+  box-shadow: 7px 7px 15px 2px rgba(101, 149, 187, 0.8);
   font-weight: 500;
-  background: #04042C;
+  background: #04042c;
   text-align: center;
 }
 
@@ -56,7 +56,7 @@ body {
 }
 
 .cloudy {
-  background:rgba(4, 20, 68, 0.8) url('../images/cloudy.jpg') center/cover no-repeat;
+  background: rgba(4, 20, 68, 0.8) url('../images/cloudy.jpg') center/cover no-repeat;
   background-blend-mode: overlay;
 }
 
@@ -94,7 +94,7 @@ body {
   text-shadow: 0 3px rgba(73, 57, 44, 0.2);
 }
 
-.current-weather-temp  {
+.current-weather-temp {
   margin-bottom: 10px;
   font-size: 50px;
   font-weight: 600;
@@ -154,7 +154,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid #F4FCFC;
+  border: 1px solid #f4fcfc;
   border-top-left-radius: 10px;
   padding-top: 5px;
   width: 20%;
@@ -172,7 +172,7 @@ body {
   margin-bottom: 10px;
   border: none;
   border-radius: 15px 0 15px 0;
-  border-bottom: 3px solid rgba(101,149,187,0.8);
+  border-bottom: 3px solid rgba(101, 149, 187, 0.8);
   outline: none;
   padding: 10px 10px;
   width: 100%;
@@ -193,7 +193,7 @@ body {
   width: 100%;
   font-size: 14px;
   text-align: left;
-  background: rgba(101,149,187,0.25);
+  background: rgba(101, 149, 187, 0.25);
   cursor: pointer;
 }
 
@@ -205,7 +205,7 @@ body {
 .saved-list-item {
   display: flex;
   margin-bottom: 1px;
-  background: rgba(101,149,187,0.25);
+  background: rgba(101, 149, 187, 0.25);
 }
 
 .city-name {
@@ -225,15 +225,15 @@ body {
 .menu-bottom {
   display: flex;
   justify-content: center;
-  border-top: 3px solid rgba(101,149,187,0.8);
+  border-top: 3px solid rgba(101, 149, 187, 0.8);
   padding: 10px;
-  background: rgba(101,149,187,0.25);
+  background: rgba(101, 149, 187, 0.25);
 }
 
 .temperature-toggle-wrap {
   position: relative;
   margin: 0 5px;
-  border: 2px solid rgba(101,149,187,0.8);
+  border: 2px solid rgba(101, 149, 187, 0.8);
   border-radius: 10px;
   width: 35px;
   line-height: 0;
@@ -259,7 +259,7 @@ body {
 }
 
 .temp-toggle-two {
-  background: rgba(101,149,187,1);
+  background: rgba(101, 149, 187, 1);
   right: 0;
   transition: 1s ease;
 }

@@ -1,5 +1,3 @@
-// move all weather related methods (apart from renderWeatherData) to weather.js
-// move userLocation to geolocation.js
 import content from './content';
 
 const ui = (() => {
