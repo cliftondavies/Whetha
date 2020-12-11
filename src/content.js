@@ -99,10 +99,9 @@ const content = (() => {
 
   const weatherPage = () => {
     const menuToggle = htmlElement('button', 'menu-toggle');
-    menuToggle.setAttribute('data-toggle', ''); // check if necessary or implemented properly
     overallWrap.appendChild(menuToggle);
-    const toggleOpen = htmlElement('span', 'toggle-show', '\u2630');
-    const toggleClose = htmlElement('span', 'toggle-hide', 'X');
+    const toggleOpen = htmlElement('span', 'toggle-open', '\u2630');
+    const toggleClose = htmlElement('span', 'toggle-close toggle-hide', 'X');
     menuToggle.appendChild(toggleOpen);
     menuToggle.appendChild(toggleClose);
 
@@ -182,7 +181,7 @@ const content = (() => {
     skycon('icon5', 'WIND');
     skycon('icon6', 'HAIL');
 
-    const menu = htmlElement('section', 'menu');
+    const menu = htmlElement('section', 'menu-hide');
     overallWrap.appendChild(menu);
 
     const menuTop = htmlElement('div', 'menu-top');

@@ -1,9 +1,9 @@
+// move all weather related methods (apart from renderWeatherData) to weather.js
+// move userLocation to geolocation.js
 import content from './content';
 
 const ui = (() => {
-  // api.js ?
-  // search weather for a location by longitude and latitude
-  const getWeather = async (latitude, longitude) => {
+  const getWeatherByCoords = async (latitude, longitude) => {
     const apiKey = process.env.API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
     const weatherJson = await fetch(apiUrl);
@@ -11,8 +11,7 @@ const ui = (() => {
     return weatherData;
   };
 
-  // search weather for a location by city
-  const searchWeather = async (city) => {
+  const getWeatherByCityName = async (city) => {
     const apiKey = process.env.API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     const weatherJson = await fetch(apiUrl);
@@ -20,7 +19,7 @@ const ui = (() => {
     return weatherData;
   };
 
-  const displayWeather = ({
+  const renderWeatherData = ({
     main, name, timezone, sys, weather, wind,
   }) => {
     const location = document.querySelector('.location');
@@ -37,45 +36,29 @@ const ui = (() => {
       windSpeed, main, name, timezone, sys, weather, wind);
   };
 
-  // show default location - location
-  const defaultLocation = async () => {
-    const londonWeather = await searchWeather('London');
-    displayWeather(londonWeather);
+  const defaultWeather = async () => {
+    const londonWeather = await getWeatherByCityName('London');
+    renderWeatherData(londonWeather);
   };
 
-  // geolocation.js ?
   const userWeather = async (position) => {
     const { latitude, longitude } = position.coords;
-    const weatherObj = await getWeather(latitude, longitude);
-    console.log(weatherObj);
-    displayWeather(weatherObj);
+    const weatherData = await getWeatherByCoords(latitude, longitude);
+    renderWeatherData(weatherData);
   };
 
-  const geolocationError = (error) => {
-    //alert(error.message);
-  };
-
-  // allow geolocation
   const userLocation = () => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(userWeather, geolocationError);
-    } else {
-      //alert('Geolocation not supported');
-    }
+    if ('geolocation' in navigator) { navigator.geolocation.getCurrentPosition(userWeather); }
   };
 
-  // toggle temperature unit
   const toggleTemperatureUnit = (unit) => {
     const temperatureToggleWrap = document.querySelector('.temperature-toggle-wrap');
     const temperatureToggle = document.querySelector('.temperature-toggle');
     const temperatures = document.querySelectorAll('[data-temperature]');
-    console.log(temperatures);
 
     if (unit === 'celsius') {
       Array.from(temperatures).forEach(temperature => {
-        const digit = temperature.textContent.match(/[0-9]/g).join('');
-        console.log(digit);
-        const fahrenheit = (Number(digit) * (9 / 5)) + 32;
+        const fahrenheit = (Number(temperature.textContent.match(/[0-9]/g).join('')) * (9 / 5)) + 32;
         temperature.textContent = `${Math.round(fahrenheit)}\u00B0 F`;
         temperatureToggleWrap.setAttribute('data-unit', 'fahrenheit');
         temperatureToggle.setAttribute('data-unit', 'fahrenheit');
@@ -93,15 +76,28 @@ const ui = (() => {
 
   // change background image of current weather section based on weather type
 
-  // toggle menu
+  const toggleMenu = () => {
+    const toggleOpen = document.querySelector('.toggle-open');
+    const toggleClose = document.querySelector('.toggle-close');
+    const menu = document.querySelector('.menu-hide');
+    content.toggleClass(toggleOpen, 'toggle-hide');
+    content.toggleClass(toggleClose, 'toggle-hide');
+    content.toggleClass(menu, 'menu-show');
+  };
 
-  // clear input
+  const clearSearchInput = (inputElement) => {
+    inputElement.value = '';
+    inputElement.blur();
+  };
+
   return {
     userLocation,
-    searchWeather,
-    displayWeather,
-    defaultLocation,
+    getWeatherByCityName,
+    renderWeatherData,
+    defaultWeather,
     toggleTemperatureUnit,
+    toggleMenu,
+    clearSearchInput,
   };
 })();
 
