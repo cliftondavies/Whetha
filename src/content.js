@@ -74,6 +74,22 @@ const content = (() => {
     return `${dateDigit} ${month} ${year}`;
   };
 
+  const changeImage = (weatherType) => {
+    const currentWeather = document.querySelector('.current-weather');
+
+    if (weatherType === 'Rain' || weatherType === 'Drizzle' || weatherType === 'Thunderstorm') {
+      currentWeather.classList.toggle('rainy');
+    } else if (weatherType === 'Snow') {
+      currentWeather.classList.toggle('snowy');
+    } else if (weatherType === 'Clouds') {
+      currentWeather.classList.toggle('cloudy');
+    } else if (weatherType === 'Clear') {
+      currentWeather.classList.toggle('clear');
+    } else {
+      currentWeather.classList.toggle('foggy');
+    }
+  };
+
   const weatherContent = (location, time, temp, feel, min, max, description, pressure, humidity,
     windSpeed, main, name, timezone, sys, weather, wind) => {
     location.textContent = `${name}, ${sys.country}`;
@@ -91,6 +107,7 @@ const content = (() => {
     windSpeed.textContent = `${Math.round(wind.speed)} M/S`;
     time.textContent = `UTC ${Math.round(timezone / 3600)}`;
     skycon('icon1', conditions[weather[0].main || weather[0].icon]);
+    changeImage(weather[0].main);
   };
 
   const toggleClass = (element, className) => {

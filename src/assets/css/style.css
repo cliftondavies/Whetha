@@ -49,8 +49,33 @@ body {
   margin-bottom: 10px;
   border-radius: 10px 10px 0 0;
   padding: 30px 10px 15px 10px;
-  background: rgba(255, 255, 255, 0.5);
+  /* background: rgba(255, 255, 255, 0.5); */
   color: #fff;
+}
+
+.rainy {
+  background: rgba(0, 0, 0, 0.8) url('../images/rainy.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
+}
+
+.cloudy {
+  background: rgba(0, 0, 0, 0.8) url('../images/cloudy.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
+}
+
+.snowy {
+  background: rgba(0, 0, 0, 0.8) url('../images/snowy.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
+}
+
+.foggy {
+  background: rgba(0, 0, 0, 0.8) url('../images/foggy.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
+}
+
+.clear {
+  background: rgba(0, 0, 0, 0.8) url('../images/clear.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
 }
 
 .location-time,
