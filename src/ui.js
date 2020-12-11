@@ -4,7 +4,7 @@ const ui = (() => {
   // api.js ?
   // search weather for a location by longitude and latitude
   const getWeather = async (latitude, longitude) => {
-    const apiKey = process.env.API_KEY; // 'fba0df8efddb9062b4252bb8fd70457c';
+    const apiKey = process.env.API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
     const weatherJson = await fetch(apiUrl);
     const weatherData = await weatherJson.json();
@@ -13,14 +13,12 @@ const ui = (() => {
 
   // search weather for a location by city
   const searchWeather = async (city) => {
-    const apiKey = process.env.API_KEY; // 'fba0df8efddb9062b4252bb8fd70457c';
+    const apiKey = process.env.API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     const weatherJson = await fetch(apiUrl);
     const weatherData = await weatherJson.json();
     return weatherData;
   };
-
-  // show default location - location
 
   const displayWeather = ({
     main, name, timezone, sys, weather, wind,
@@ -28,17 +26,18 @@ const ui = (() => {
     const location = document.querySelector('.location');
     const time = document.querySelector('.time');
     const temp = document.querySelector('.current-weather-temp');
-    const feel = document.querySelector('.feels-like');
+    const feel = document.querySelector('.feel-temp');
     const min = document.querySelector('.temp-min');
     const max = document.querySelector('.temp-max');
     const description = document.querySelector('.description');
     const pressure = document.querySelector('.pressure');
     const humidity = document.querySelector('.humidity');
     const windSpeed = document.querySelector('.wind');
-    content.weatherContent(location, time, temp, feel, min, max, description, pressure, humidity, windSpeed,
-      main, name, timezone, sys, weather, wind);
+    content.weatherContent(location, time, temp, feel, min, max, description, pressure, humidity,
+      windSpeed, main, name, timezone, sys, weather, wind);
   };
 
+  // show default location - location
   const defaultLocation = async () => {
     const londonWeather = await searchWeather('London');
     displayWeather(londonWeather);
@@ -65,30 +64,36 @@ const ui = (() => {
     }
   };
 
-  // convert celsius to fahrenheit and vice versa
-  const celsiusToFahrenheit = (temperature) => (temperature * (9 / 5)) + 32;
-
   // toggle temperature unit
-  // const temperatureUnit = (currentTempUnit) => {
-  //   get all elements with class temperature
-  //   if currentTempUnit is c
-  //     iterate through elements
-  //     get element temperature string as digit
-  //     convert element temp to fahrenheit
-  //     update content of element
-  //   else
-  //     iterate through elements
-  //     get element temperature string as digit
-  //     set element back to temp value retrieve from api
-  //     update content of element
-  //   end
-  // };
+  const toggleTemperatureUnit = (unit) => {
+    const temperatureToggleWrap = document.querySelector('.temperature-toggle-wrap');
+    const temperatureToggle = document.querySelector('.temperature-toggle');
+    const temperatures = document.querySelectorAll('[data-temperature]');
+    console.log(temperatures);
+
+    if (unit === 'celsius') {
+      Array.from(temperatures).forEach(temperature => {
+        const digit = temperature.textContent.match(/[0-9]/g).join('');
+        console.log(digit);
+        const fahrenheit = (Number(digit) * (9 / 5)) + 32;
+        temperature.textContent = `${Math.round(fahrenheit)}\u00B0 F`;
+        temperatureToggleWrap.setAttribute('data-unit', 'fahrenheit');
+        temperatureToggle.setAttribute('data-unit', 'fahrenheit');
+      });
+    } else {
+      Array.from(temperatures).forEach(temperature => {
+        temperature.textContent = `${temperature.dataset.temp}\u00B0 C`;
+        temperatureToggleWrap.setAttribute('data-unit', 'celsius');
+        temperatureToggle.setAttribute('data-unit', 'celsius');
+      });
+    }
+    content.toggleClass(temperatureToggleWrap, 'temp-toggle-one');
+    content.toggleClass(temperatureToggle, 'temp-toggle-two');
+  };
 
   // change background image of current weather section based on weather type
 
   // toggle menu
-
-  // set icon method - hereor in coontent is the method necessary?
 
   // clear input
   return {
@@ -96,6 +101,7 @@ const ui = (() => {
     searchWeather,
     displayWeather,
     defaultLocation,
+    toggleTemperatureUnit,
   };
 })();
 

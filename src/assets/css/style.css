@@ -87,6 +87,10 @@ body {
   text-shadow: 1px 4px rgba(73, 57, 44, 0.5);
 }
 
+.temp-min::after {
+  content: " / ";
+}
+
 .date,
 .time,
 .feels-like,
@@ -217,26 +221,35 @@ body {
 }
 
 .temperature-toggle-wrap {
+  position: relative;
   margin: 0 5px;
   border: 2px solid rgba(101,149,187,0.8);
   border-radius: 10px;
   width: 35px;
   line-height: 0;
+  cursor: pointer;
+  transition: 1s ease;
 }
 
 .temperature-toggle {
+  position: absolute;
+  top: -1px;
   border: 0;
   border-radius: 50%;
   width: 15px;
   height: 15px;
   background: #000;
   cursor: pointer;
+  transition: 1s ease;
 }
 
 .temp-toggle-one {
-  background: #fff;
+  background: #000;
+  transition: 1s ease;
 }
 
 .temp-toggle-two {
   background: rgba(101,149,187,1);
+  right: 0;
+  transition: 1s ease;
 }

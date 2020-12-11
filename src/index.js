@@ -7,8 +7,8 @@ import ui from './ui';
 content.weatherPage();
 
 // const temperature = { unit: 'celsius' }; // here or elsewhere?
-// const temperatureToggle = document.querySelector('.temperature-toggle-wrap');
 const searchBar = document.querySelector('.search-bar');
+const temperatureToggle = document.querySelector('.temperature-toggle-wrap');
 
 window.addEventListener('load', () => {
   ui.defaultLocation();
@@ -32,4 +32,9 @@ searchBar.addEventListener('keypress', async (e) => {
     searchBar.value = '';
     searchBar.blur();
   }
+});
+
+temperatureToggle.addEventListener('click', e => {
+  console.log(e.target.dataset.unit);
+  ui.toggleTemperatureUnit(e.target.dataset.unit);
 });

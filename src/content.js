@@ -78,15 +78,23 @@ const content = (() => {
     windSpeed, main, name, timezone, sys, weather, wind) => {
     location.textContent = `${name}, ${sys.country}`;
     temp.textContent = `${Math.round(main.temp)}\u00B0 C`;
-    feel.textContent = `Feels like ${Math.round(main.feels_like)}\u00B0 C`;
-    min.textContent = `${Math.round(main.temp_min)}\u00B0 C / `;
+    temp.setAttribute('data-temp', Math.round(main.temp));
+    feel.textContent = `${Math.round(main.feels_like)}\u00B0 C`;
+    feel.setAttribute('data-temp', Math.round(main.feels_like));
+    min.textContent = `${Math.round(main.temp_min)}\u00B0 C`;
+    min.setAttribute('data-temp', Math.round(main.temp_min));
     max.textContent = `${Math.round(main.temp_max)}\u00B0 C`;
+    max.setAttribute('data-temp', Math.round(main.temp_max));
     description.textContent = `${weather[0].description}`;
     pressure.textContent = `${main.pressure} HPA`;
     humidity.textContent = `${main.humidity}%`;
     windSpeed.textContent = `${Math.round(wind.speed)} M/S`;
     time.textContent = `UTC ${Math.round(timezone / 3600)}`;
     skycon('icon1', conditions[weather[0].main || weather[0].icon]);
+  };
+
+  const toggleClass = (element, className) => {
+    element.classList.toggle(className);
   };
 
   const weatherPage = () => {
@@ -112,18 +120,23 @@ const content = (() => {
 
     const temperature = htmlElement('section', 'temperature');
     const temp = htmlElement('span', 'current-weather-temp');
-    temp.setAttribute('data-temparature', ''); // try here first before propagating
-    const feelsLike = htmlElement('span', 'feels-like');
-    // const minMax = htmlElement('span', 'min-max', '1\u00B0 C / 10\u00B0 C');
+    temp.setAttribute('data-temperature', '');
+
+    const feelsLike = htmlElement('div', 'feels-like');
+    const feel = htmlElement('span', 'feel', 'Feels like, ');
+    const feelTemp = htmlElement('span', 'feel-temp');
+    feelTemp.setAttribute('data-temperature', '');
+    feelsLike.append(feel);
+    feelsLike.append(feelTemp);
     const minMax = htmlElement('div', 'min-max');
     const tempMin = htmlElement('span', 'temp-min');
     const tempMax = htmlElement('span', 'temp-max');
+    tempMax.setAttribute('data-temperature', '');
+    tempMin.setAttribute('data-temperature', '');
     minMax.appendChild(tempMin);
     minMax.appendChild(tempMax);
     temperature.appendChild(temp);
     temperature.appendChild(feelsLike);
-    // temperature.appendChild(tempMin);
-    // temperature.appendChild(tempMax);
     temperature.appendChild(minMax);
 
     const details = htmlElement('section', 'details');
@@ -212,9 +225,13 @@ const content = (() => {
     menuBottom.appendChild(celsius);
 
     const temperatureToggleWrap = htmlElement('div', 'temperature-toggle-wrap');
+    temperatureToggleWrap.setAttribute('data-toggle', 'toggle-unit');
+    temperatureToggleWrap.setAttribute('data-unit', 'celsius');
     menuBottom.appendChild(temperatureToggleWrap);
 
     const temperatureToggle = htmlElement('button', 'temperature-toggle');
+    temperatureToggle.setAttribute('data-toggle', 'toggle-unit');
+    temperatureToggle.setAttribute('data-unit', 'celsius');
     temperatureToggleWrap.appendChild(temperatureToggle);
 
     const fahrenheit = htmlElement('span', 'fahrenheit', '\u00B0F');
@@ -224,6 +241,7 @@ const content = (() => {
   return {
     weatherPage,
     weatherContent,
+    toggleClass,
   };
 })();
 
