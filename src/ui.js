@@ -1,20 +1,41 @@
 import content from './content';
 
 const ui = (() => {
+  const errorHandler = (e) => {
+    const notification = document.querySelector('.notification');
+    if (e.message === 'g is undefined') {
+      notification.textContent = 'Please enter a valid city name!';
+    } else {
+      notification.textContent = e.message;
+    }
+    setTimeout(() => {
+      notification.textContent = '';
+      return notification;
+    }, 5000);
+  };
+
   const getWeatherByCoords = async (latitude, longitude) => {
-    const apiKey = process.env.API_KEY;
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-    const weatherJson = await fetch(apiUrl);
-    const weatherData = await weatherJson.json();
-    return weatherData;
+    try {
+      const apiKey = process.env.API_KEY;
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+      const weatherJson = await fetch(apiUrl);
+      const weatherData = await weatherJson.json();
+      return weatherData;
+    } catch (error) {
+      return errorHandler(error);
+    }
   };
 
   const getWeatherByCityName = async (city) => {
-    const apiKey = process.env.API_KEY;
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    const weatherJson = await fetch(apiUrl);
-    const weatherData = await weatherJson.json();
-    return weatherData;
+    try {
+      const apiKey = process.env.API_KEY;
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+      const weatherJson = await fetch(apiUrl);
+      const weatherData = await weatherJson.json();
+      return weatherData;
+    } catch (error) {
+      return errorHandler(error);
+    }
   };
 
   const renderWeatherData = ({
@@ -35,18 +56,26 @@ const ui = (() => {
   };
 
   const defaultWeather = async () => {
-    const londonWeather = await getWeatherByCityName('London');
-    renderWeatherData(londonWeather);
+    try {
+      const londonWeather = await getWeatherByCityName('London');
+      renderWeatherData(londonWeather);
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
   const userWeather = async (position) => {
-    const { latitude, longitude } = position.coords;
-    const weatherData = await getWeatherByCoords(latitude, longitude);
-    renderWeatherData(weatherData);
+    try {
+      const { latitude, longitude } = position.coords;
+      const weatherData = await getWeatherByCoords(latitude, longitude);
+      renderWeatherData(weatherData);
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
   const userLocation = () => {
-    if ('geolocation' in navigator) { navigator.geolocation.getCurrentPosition(userWeather); }
+    if ('geolocation' in navigator) { navigator.geolocation.getCurrentPosition(userWeather, errorHandler); }
   };
 
   const toggleTemperatureUnit = (unit) => {
@@ -90,6 +119,7 @@ const ui = (() => {
     userLocation,
     getWeatherByCityName,
     renderWeatherData,
+    errorHandler,
     defaultWeather,
     toggleTemperatureUnit,
     toggleMenu,

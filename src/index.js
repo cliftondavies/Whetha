@@ -11,15 +11,19 @@ const temperatureToggle = document.querySelector('.temperature-toggle-wrap');
 const menuToggle = document.querySelector('.menu-toggle');
 
 window.addEventListener('load', () => {
-  ui.defaultWeather();
+  ui.defaultWeather().catch(ui.errorHandler);
   ui.userLocation();
 });
 
 searchBar.addEventListener('keypress', async (e) => {
   if (e.keyCode === 13) {
-    const weatherData = await ui.getWeatherByCityName(searchBar.value);
-    ui.renderWeatherData(weatherData);
-    ui.clearSearchInput(searchBar);
+    try {
+      const weatherData = await ui.getWeatherByCityName(searchBar.value);
+      ui.renderWeatherData(weatherData);
+      ui.clearSearchInput(searchBar);
+    } catch (error) {
+      ui.errorHandler(error);
+    }
   }
 });
 

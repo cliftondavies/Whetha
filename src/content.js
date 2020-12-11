@@ -117,6 +117,8 @@ const content = (() => {
   };
 
   const weatherPage = () => {
+    const notification = htmlElement('span', 'notification');
+    overallWrap.appendChild(notification);
     const menuToggle = htmlElement('button', 'menu-toggle');
     overallWrap.appendChild(menuToggle);
     const toggleOpen = htmlElement('span', 'toggle-open', '\u2630');
