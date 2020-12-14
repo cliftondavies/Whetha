@@ -26,12 +26,16 @@ body {
 }
 
 .notification {
+  display: none;
   position: absolute;
   top: 0;
   right: 30px;
   border-radius: 0 0 5px 5px;
+  padding: 5px;
   background: rgba(242, 15, 23, 0.8);
 }
+
+.show-notification { display: block; }
 
 .menu-toggle {
   display: inline-block;

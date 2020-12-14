@@ -8,8 +8,10 @@ const ui = (() => {
     } else {
       notification.textContent = e.message;
     }
+    content.toggleClass(notification, 'show-notification');
     setTimeout(() => {
       notification.textContent = '';
+      content.toggleClass(notification, 'show-notification');
       return notification;
     }, 5000);
   };
