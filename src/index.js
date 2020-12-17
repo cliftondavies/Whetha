@@ -1,6 +1,7 @@
 import 'regenerator-runtime/runtime';
 import './assets/css/reset.css';
 import './assets/css/style.css';
+import './assets/css/test.scss';
 import content from './content';
 import ui from './ui';
 
@@ -15,7 +16,7 @@ window.addEventListener('load', () => {
   ui.userLocation();
 });
 
-searchBar.addEventListener('keypress', async (e) => {
+searchBar.addEventListener('keypress', async e => {
   if (e.keyCode === 13) {
     try {
       const weatherData = await ui.getWeatherByCityName(searchBar.value);
