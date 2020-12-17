@@ -3,10 +3,10 @@ import content from './content';
 const ui = (() => {
   const errorHandler = (e) => {
     const notification = document.querySelector('.notification');
-    if (e.message === 'g is undefined') {
-      notification.textContent = 'Please enter a valid city name!';
-    } else {
+    if (e.message === 'User denied geolocation prompt') {
       notification.textContent = e.message;
+    } else {
+      notification.textContent = 'Please enter a valid city name!';
     }
     content.toggleClass(notification, 'show-notification');
     setTimeout(() => {
