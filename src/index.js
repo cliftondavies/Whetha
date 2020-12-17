@@ -1,7 +1,6 @@
 import 'regenerator-runtime/runtime';
 import './assets/css/reset.css';
 import './assets/css/style.css';
-import './assets/css/test.scss';
 import content from './content';
 import ui from './ui';
 
