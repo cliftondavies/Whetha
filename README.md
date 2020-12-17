@@ -14,7 +14,7 @@
 
 ## :tv: Media
 
-[Live Demo Link](https://rawcdn.githack.com/cliftondavies/Weather-App/01194b7cd3453def4fb5cf2ba4263bc32330b2f1/dist/index.html)
+[Live Demo Link](https://rawcdn.githack.com/cliftondavies/Weather-App/2a34e2528850eb1cd4bb3d1685314fe695cee40a/dist/index.html)
 
 ## :toolbox: Tools & Technologies Used
 
