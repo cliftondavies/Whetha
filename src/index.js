@@ -15,7 +15,7 @@ window.addEventListener('load', () => {
   ui.userLocation();
 });
 
-searchBar.addEventListener('keypress', async (e) => {
+searchBar.addEventListener('keypress', async e => {
   if (e.keyCode === 13) {
     try {
       const weatherData = await ui.getWeatherByCityName(searchBar.value);

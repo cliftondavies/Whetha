@@ -21,17 +21,18 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
+        test: /\.(s*)css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
     ],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    port: 3000,
   },
   plugins: [
     new Dotenv({
