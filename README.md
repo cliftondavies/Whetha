@@ -1,6 +1,6 @@
-# Weather-App
+# Whetha
 
-> A Weather web app that displays the current weather for a given location.
+> A weather web app that displays the current weather for a given location.
 
 ![screenshot](weather.png)
 
