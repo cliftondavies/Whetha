@@ -14,7 +14,7 @@
 
 ## :tv: Media
 
-[Live Demo Link](https://rawcdn.githack.com/cliftondavies/Weather-App/2a34e2528850eb1cd4bb3d1685314fe695cee40a/dist/index.html)
+[Live Demo Link](https://whetha.netlify.app/)
 
 ## :toolbox: Tools & Technologies Used
 
