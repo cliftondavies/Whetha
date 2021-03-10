@@ -1,6 +1,6 @@
 # Whetha
 
-> A weather web app that displays the current weather for a given location.
+> A weather web app that displays the current weather for a given location, using the OpenWeatherMap API.
 
 ![screenshot](weather.png)
 
@@ -23,11 +23,7 @@
 - HTML5
 - CSS3
 - JavaScript ES6
-- OpenWeatherMap API
-- Fetch API
-- Geolocation API
 - webpack 5
-- Skycons
 
 ## :rocket: Getting Started
 
