@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2a816577-7281-40e0-8489-5a14077fc9ed/deploy-status)](https://app.netlify.com/sites/whetha/deploys)
+
 # Whetha
 
 > A weather web app that displays the current weather for a given location, using the OpenWeatherMap API.
